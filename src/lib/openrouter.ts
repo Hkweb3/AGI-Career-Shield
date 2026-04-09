@@ -81,7 +81,7 @@ export async function generateOdysseyPlanAI(params: {
   similarity_score: number;
   salary_potential: { min: number; median: number; max: number; upside?: string };
   transition_months: number;
-  demand_trend: string;
+  demand_trend: 'growing' | 'stable' | 'declining';
   demand_growth_pct: number;
   skills_gap: string[];
   prototype_experiments: { week: string; action: string; hours: number }[];

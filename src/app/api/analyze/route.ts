@@ -57,10 +57,15 @@ export async function POST(request: NextRequest) {
           topRisks: baseResult.brutal_skills_audit.task_breakdown.slice(0, 3),
         });
 
+        const castPlan = (plan: any) => ({
+          ...plan,
+          demand_trend: plan.demand_trend as 'growing' | 'stable' | 'declining',
+        });
+
         baseResult.odyssey_plans = [
-          { ...baseResult.odyssey_plans[0], ...planA },
-          { ...baseResult.odyssey_plans[1], ...planB },
-          { ...baseResult.odyssey_plans[2], ...planC },
+          { ...baseResult.odyssey_plans[0], ...castPlan(planA) },
+          { ...baseResult.odyssey_plans[1], ...castPlan(planB) },
+          { ...baseResult.odyssey_plans[2], ...castPlan(planC) },
         ];
         baseResult.ai_explanation = aiExplanation;
       } catch (llmError) {
